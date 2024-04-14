@@ -17,8 +17,8 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   host: "localhost",
   user: "root",
-  password: "root",
-  database: "seleniumdb",
+  password: "akhila",
+  database: "authors",
   port: 3306,
   insecureAuth: true,
 });
