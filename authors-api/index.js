@@ -4,7 +4,6 @@ const mysql = require("mysql");
 const app = express();
 const port = 3000;
 
-// Create a MySQL connection pool
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: "localhost",
@@ -15,7 +14,6 @@ const pool = mysql.createPool({
   insecureAuth: true,
 });
 
-// Endpoint to get top authors or specific author details
 app.get("/authors", (req, res) => {
   const authorName = req.query.author_name;
 
