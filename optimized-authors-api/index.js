@@ -9,7 +9,6 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Create a MySQL connection pool
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: "localhost",
@@ -20,15 +19,11 @@ const pool = mysql.createPool({
   insecureAuth: true,
 });
 
-// Cache for storing query results
-const cache = new Map();
 
-// Endpoint to get top authors or specific author details
+const cache = new Map();
 app.get("/authors", (req, res) => {
   const authorName = req.query.author_name;
   const cacheKey = authorName || "top_authors";
-
-  // Check cache first
   if (cache.has(cacheKey)) {
     return res.json(cache.get(cacheKey));
   }
@@ -77,7 +72,6 @@ app.get("/authors", (req, res) => {
         return;
       }
 
-      // Cache the results
       cache.set(cacheKey, results);
 
       res.json(results);
